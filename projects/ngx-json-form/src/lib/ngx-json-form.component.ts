@@ -1,28 +1,28 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
-import { Observable, catchError, forkJoin, map, of, take, tap } from 'rxjs';
-import { GenericControl, Options } from './models/generic-control';
-import { SelectDropdownConfig } from './models/select-dropdown.model';
-import { ExtendedFileModel } from './models/extendedfile.model';
-import { JsonFormService } from './services/json-form.service';
-import { FileuploadService } from './services/fileupload.service';
-import { CustomValidator } from './validators/customvalidators';
-import { flatten, getLocalISO } from './utils/json-form-utils';
-import { HttpEventType } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { MaskDirective } from './directives/mask/mask.directive';
-import { IndexOfObjectValuePipe } from './pipes/indexOfObjektValue/index-of-object-value.pipe';
-import { ImageThumbnailComponent } from './components/image-thumbnail/image-thumbnail.component';
-import { SanitizePipe } from './pipes/sanitize/sanitize.pipe';
-import { ToggleComponent } from './components/toggle/toggle.component';
-import { MatSelectModule } from '@angular/material/select';
-import { SelectDropdownComponent } from './components/select-dropdown/select-dropdown.component';
-import { HiddenDirective } from './directives/hidden/hidden.directive';
-import { SignatureComponent } from './components/signature/signature.component';
-// import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms'
+import { Observable, catchError, forkJoin, map, of, take, tap } from 'rxjs'
+import { GenericControl, Options } from './models/generic-control'
+import { SelectDropdownConfig } from './models/select-dropdown.model'
+import { ExtendedFileModel } from './models/extendedfile.model'
+import { JsonFormService } from './services/json-form.service'
+import { FileuploadService } from './services/fileupload.service'
+import { CustomValidator } from './validators/customvalidators'
+import { flatten, getLocalISO } from './utils/json-form-utils'
+import { HttpEventType } from '@angular/common/http'
+import { CommonModule } from '@angular/common'
+import { MaskDirective } from './directives/mask/mask.directive'
+import { IndexOfObjectValuePipe } from './pipes/indexOfObjektValue/index-of-object-value.pipe'
+import { ImageThumbnailComponent } from './components/image-thumbnail/image-thumbnail.component'
+import { SanitizePipe } from './pipes/sanitize/sanitize.pipe'
+import { ToggleComponent } from './components/toggle/toggle.component'
+import { MatSelectModule } from '@angular/material/select'
+import { SelectDropdownComponent } from './components/select-dropdown/select-dropdown.component'
+import { HiddenDirective } from './directives/hidden/hidden.directive'
+import { SignatureComponent } from './components/signature/signature.component'
+// import { AutofocusDirective } from './directives/autofocus/autofocus.directive'
 
 @Component({
-  selector: 'lib-ngx-json-form',
+  selector: 'ngx-json-form',
   standalone: true,
   imports: [
     // AutofocusDirective,
@@ -73,7 +73,7 @@ export class NgxJsonFormComponent {
     searchPlaceholder: 'Search',
     clearOnSelection: false,
     inputDirection: 'ltr',
-  };
+  }
   options = [
     {
       _id: "5a66d6c31d5e4e36c7711b7a",
@@ -408,7 +408,7 @@ export class NgxJsonFormComponent {
 
   private executeFileUpload(requestsChain: any[]): void {
     forkJoin(requestsChain).subscribe((response: any) => {
-      response.forEach((item: { isError: any; index: number; error: { statusText: string } }) => {
+      response.forEach((item: { isError: any index: number error: { statusText: string } }) => {
         if (item.isError) {
           this.toUploadFilesList[item.index].uploadStatus.isError = true
           this.toUploadFilesList[item.index].uploadStatus.errorMessage = item.error.statusText
