@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "preprocess": "tailwindcss -c ./projects/demo/tailwind.config.js -o ./projects/ngx-json-form/src/lib/tailwind.scss & ng build json-form",
+    "preprocess": "tailwindcss -c ./projects/demo/tailwind.config.js -o ./projects/ngx-json-form/src/lib/tailwind.scss & ng build ngx-json-form",
     "publish": "cd dist/ngx-json-form && npm publish --access public"
   },
   "private": true,
