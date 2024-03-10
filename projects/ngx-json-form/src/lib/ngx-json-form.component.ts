@@ -22,7 +22,7 @@ import { SignatureComponent } from './components/signature/signature.component'
 // import { AutofocusDirective } from './directives/autofocus/autofocus.directive'
 
 @Component({
-  selector: 'ngx-json-form',
+  selector: 'json-form',
   standalone: true,
   imports: [
     // AutofocusDirective,
