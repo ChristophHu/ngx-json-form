@@ -1,0 +1,47 @@
+.nxt_toggle
+  .nxt_toggle_label
+    position: relative
+    display: inline-block
+    margin: 0
+    padding: 0
+
+  .nxt_toggle_checkbox
+    position: absolute
+    opacity: 0
+
+  .nxt_toggle_field
+    display: block
+    position: relative
+    height: 1.5rem
+    width: 3rem
+    margin: 0
+    align-items: center
+    background-color: rgb(229 231 235)
+    border-radius: 999px
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
+    transition-duration: 200ms
+    cursor: pointer
+
+    .nxt_toggle_switch
+      display: block
+      position: relative
+      height: 1.25rem
+      width: 1.25rem
+      margin: 2px
+      top: 2px
+      left: 0
+      background-color: rgb(255 255 255)
+      border-radius: 999px
+      overflow: hidden
+      transition-property: all
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
+      transition-duration: 200ms
+  
+// animation
+.nxt_toggle_checkbox:checked
+  + .nxt_toggle_field
+    background-color: rgb(59, 130, 246)
+
+    .nxt_toggle_switch
+      transform: translateX(1.5rem)

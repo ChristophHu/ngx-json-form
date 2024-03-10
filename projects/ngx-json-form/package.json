@@ -1,0 +1,34 @@
+{
+  "name": "@christophhu/ngx-json-form",
+  "version": "1.0.0",
+  "description": "Create Angular reactive forms by a JSON Schema.",
+  "license": "MIT",
+  "author": {
+    "name": "Christoph Huschenhoefer",
+    "email": "christoph@nxt.codes"
+  },
+  "keywords": [
+    "angular",
+    "reactive-forms",
+    "JSON Schema",
+    "tailwindcss"
+  ],
+  "peerDependencies": {
+    "@angular/cdk": "^17.2.0",
+    "@angular/common": "^17.2.0",
+    "@angular/core": "^17.2.0",
+    "signature_pad": "^4.1.7"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChristophHu/ngx-json-form.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ChristophHu/ngx-json-form/issues"
+  },
+  "homepage": "https://github.com/ChristophHu/ngx-json-form#readme",
+  "sideEffects": false
+}
