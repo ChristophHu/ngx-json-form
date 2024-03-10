@@ -408,7 +408,7 @@ export class NgxJsonFormComponent {
 
   private executeFileUpload(requestsChain: any[]): void {
     forkJoin(requestsChain).subscribe((response: any) => {
-      response.forEach((item: { isError: any index: number error: { statusText: string } }) => {
+      response.forEach((item: { isError: any; index: number; error: { statusText: string } }) => {
         if (item.isError) {
           this.toUploadFilesList[item.index].uploadStatus.isError = true
           this.toUploadFilesList[item.index].uploadStatus.errorMessage = item.error.statusText
