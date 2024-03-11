@@ -1,1 +1,285 @@
 /* You can add global styles to this file, and also import other style files */
+
+@tailwind base
+@tailwind components
+@tailwind utilities
+@tailwind variants
+
+@layer base
+    :root
+        // menu
+        --menu          : rgb(21, 21, 23)
+        --menu-light    : rgb(240, 240, 240)
+        --menu-dark     : rgb(174, 174, 174)
+
+        // backgrounds
+        --primary       : rgb(240, 240, 240)
+        --secondary     : rgb(225, 225, 225)
+        --tertiary      : rgb(252, 252, 252)
+        --accent        : rgb(37, 99, 235)
+        --accent-lighter : rgb(58, 115, 238)
+
+        // border
+        --borderline    : rgb(210, 210, 210)
+
+        // text
+        --light         : rgb(240, 240, 240)
+        --lighter       : rgb(220, 220, 220)
+        --dark          : rgb(41, 41, 43)
+        --darker        : rgb(21, 21, 23)
+        --placeholder   : rgb(174, 174, 174)
+        --disabled      : rgb(174, 174, 174)
+        --static-gray   : rgb(141, 141, 141)
+
+        // input
+        --label         : rgb(96, 96, 96)
+        --input         : rgb(240, 240, 240)
+        --icon          : rgb(141, 141, 141)
+
+    .dark
+        // menu
+        --menu          : rgb(21, 21, 23)
+        --menu-light    : rgb(240, 240, 240)
+        --menu-dark     : rgb(174, 174, 174)
+
+        // backgrounds   
+        --primary       : rgb(21, 21, 23)
+        --secondary     : rgb(40, 40, 40)
+        --tertiary      : rgb(32, 32, 32)
+        --accent        : rgb(37, 99, 235)
+        --accent-lighter : rgb(58, 115, 238)
+
+        // border
+        --borderline    : rgb(56, 56, 56)
+
+        // text
+        --darker        : rgb(240, 240, 240)
+        --dark          : rgb(200, 200, 200)
+        --lighter       : rgb(21, 21, 23)
+        --light         : rgb(41, 41, 43)
+        --placeholder   : rgb(141, 141, 141)
+        --disabled      : rgb(141, 141, 141)
+        --static-gray   : rgb(141, 141, 141)
+
+        // input
+        --label         : rgb(140, 140, 140)
+        --input         : rgb(40, 40, 40)
+        --icon          : rgb(141, 141, 141)
+*
+    -webkit-user-select: none
+    -khtml-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+
+body
+    // @apply overflow-hidden
+
+.scrollbar-hide
+    -ms-overflow-style: none
+    scrollbar-width: none
+    overflow-y: scroll
+
+    &::-webkit-scrollbar
+        display: none
+        width: 0
+        height: 0
+
+// .repeating-linear
+//     background: repeating-linear-gradient(-45deg, transparent 0 16px, rgb(27, 30, 39) 16px 20px)
+
+input, textarea
+    @apply ring-0 ring-offset-0 outline-none
+
+// input, textarea
+//     &[type='text']:focus, &[type='email']:focus, &[type='password']:focus, &[type='number']:focus, &[type='date']:focus, &[type='datetime-local']:focus, &textarea:focus, &select:focus
+//         @apply ring-0 ring-offset-0 outline-none
+
+//   @apply absolute top-20 right-3 bottom-16 left-3 pt-2 overflow-auto
+
+.main_content
+  -webkit-overflow-scrolling: touch
+  -ms-overflow-style: -ms-autohiding-scrollbar
+
+  &::-webkit-scrollbar
+    display: none
+
+.mat-mdc-select-trigger
+    @apply px-3
+
+input::file-selector-button
+    @apply h-full w-40 px-4 bg-gray-200 border-none
+
+// select dropdown text and check-icon color
+.mdc-list-item--selected .mdc-list-item__primary-text
+    @apply text-blue-500 #{!important}
+    
+.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after
+    @apply text-blue-500 #{!important}
+
+// debug
+body        
+    &.debug .debug-item-hide
+        @apply block
+
+    .debug-item-hide
+        @apply hidden
+
+.repeating-linear
+    background: repeating-linear-gradient(-45deg, transparent 0 16px, rgb(27, 30, 39) 16px 20px)
+  
+// JSON-Form
+// label
+@mixin nxt_label
+    @apply text-label
+
+@mixin nxt_input
+    @apply bg-input text-darker disabled:text-disabled placeholder:text-placeholder
+    
+// button
+.nxt_button
+    .nxt_button_label
+        @include nxt_label
+
+// checkbox
+.nxt_checkbox
+    .nxt_checkbox_label
+        @include nxt_label
+        @apply select-none
+
+    .nxt_checkbox_field
+        @apply bg-green-500
+
+// input (password, dependedinput, datetime-local)
+.nxt_input
+    .nxt_input_label
+        @include nxt_label
+        @apply select-none
+
+    .nxt_input_field
+        @include nxt_input
+        @apply focus:border-static_gray border-borderline
+
+    .nxt_input_area
+        @include nxt_input
+        @apply focus:border-static_gray border-borderline
+
+    .nxt_input_date
+        @include nxt_input
+        @apply focus:border-static_gray border-borderline
+
+    .nxt_input_action_icon
+        @apply text-icon
+
+// radio
+.nxt_radio
+    .nxt_radio_label
+        @include nxt_label
+        @apply select-none
+
+    .nxt_radio_input
+        // color: green
+
+// select
+.nxt_select
+    .nxt_select_label
+        @include nxt_label
+        @apply select-none
+
+    .nxt_select_input
+        @include nxt_input
+        @apply focus:border-light border-borderline
+
+    .nxt_select_search
+        @apply bg-secondary text-icon
+
+        .nxt_select_search_input
+            @apply bg-secondary text-dark
+
+    .nxt_select_button
+        @apply bg-input text-darker border border-borderline disabled:text-disabled 
+
+    .nxt_select_options
+        @apply bg-tertiary text-dark
+
+        .nxt-select-seperator
+            @apply border-t border-borderline
+
+    .nxt_select_option
+        @apply hover:bg-secondary
+
+    .mat-mdc-select-trigger
+        @apply px-3
+
+    .mat-mdc-select-arrow svg
+        @apply fill-icon
+
+.mat-mdc-select-panel
+    @apply bg-tertiary #{!important}
+
+    .mat-mdc-option
+        &:hover
+            @apply bg-secondary #{!important}
+
+        &.mat-mdc-option-active
+            @apply bg-secondary #{!important}
+
+        .mdc-list-item
+            @apply bg-secondary text-icon
+
+        .mat-mdc-focus-indicator
+            // @apply bg-red-200
+
+// signature
+.nxt_signature
+    .nxt_signature_label
+        @include nxt_label
+        @apply select-none
+
+    .nxt_signature_button
+        @apply bg-input text-darker disabled:text-disabled
+
+    .nxt_signature_header
+        @include nxt_label
+
+    .nxt_signature_field
+        @apply bg-input text-darker
+
+    .nxt_signature_modal
+        @apply bg-secondary text-dark
+
+    .nxt_signature_img
+        @apply invert-0
+
+.dark
+    .nxt_signature_img
+        @apply invert #{!important}
+
+
+// toggle
+.nxt_toggle
+    .nxt_toggle_label
+        @include nxt_label
+        @apply select-none
+
+    input:checked
+        + .nxt_toggle_field
+            @apply bg-blue-500
+
+    .nxt_toggle_field
+        @apply bg-gray-100 dark:bg-gray-800
+
+// select dropdown text and check-icon color
+.mdc-list-item .mdc-list-item__primary-text
+    @apply text-dark
+
+// hover and selected color
+.mdc-list-item--selected .mdc-list-item__primary-text
+    @apply text-blue-500 #{!important}
+    
+.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after
+    @apply text-blue-500 #{!important}
+
+// input::file-selector-button
+input::file-selector-button
+    @apply h-full w-40 px-4 bg-gray-200 border-none
