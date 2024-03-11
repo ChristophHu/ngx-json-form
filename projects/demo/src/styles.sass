@@ -237,19 +237,23 @@ body
         @apply select-none
 
     .nxt_signature_button
-        @apply bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100
+        @apply bg-input text-darker disabled:text-disabled
 
     .nxt_signature_header
         @include nxt_label
 
     .nxt_signature_field
-        @apply bg-gray-200 dark:bg-gray-800
+        @apply bg-input text-darker
 
     .nxt_signature_modal
-        @apply bg-gray-200 dark:bg-gray-900
+        @apply bg-secondary text-dark
 
     .nxt_signature_img
-        @apply invert-0 dark:invert
+        @apply invert-0
+
+.dark
+    .nxt_signature_img
+        @apply invert #{!important}
 
 // toggle
 .nxt_toggle
