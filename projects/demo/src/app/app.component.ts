@@ -194,26 +194,26 @@ export class AppComponent {
             label: 'Beschreibung',
             placeholder: 'Beschreibung zur Person'
           },
-          // {
-          //   type: 'fileupload',
-          //   disabled: false,
-          //   hidden: false,
-          //   key: 'file',
-          //   label: 'Datei',
-          //   placeholder: 'Datei',
-          //   multiple: true,
-          //   upload: {
-          //     url: 'https://v2.convertapi.com/upload',
-          //     type: 'blob'
-          //   }
-          // },
-          // {
-          //   type: 'imageslider',
-          //   disabled: false,
-          //   hidden: false,
-          //   key: 'images',
-          //   label: 'Galerie'
-          // }
+          {
+            type: 'fileupload',
+            disabled: false,
+            hidden: false,
+            key: 'file',
+            label: 'Datei',
+            placeholder: 'Datei',
+            multiple: true,
+            upload: {
+              url: 'https://v2.convertapi.com/upload',
+              type: 'blob'
+            }
+          },
+          {
+            type: 'imageslider',
+            disabled: false,
+            hidden: false,
+            key: 'images',
+            label: 'Galerie'
+          },
           {
             type: 'signature',
             disabled: false,
