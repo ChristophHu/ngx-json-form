@@ -70,6 +70,9 @@ export class SignatureComponent implements AfterContentInit, ControlValueAccesso
     this.myGroup = new FormGroup({
       value: new FormControl()
     })
+    // this.myImg.src = "data:image/png;base64,R0lGODlhDwAUAIABAAAAAP///yH5BAEAAAEALAAAAAAPABQAAAIXjI+py+0Po5wH2HsXzmw//lHiSJZmUAAAOw==";
+    // this.signImg.src = this.signature
+    // this.invertColor()
   }
 
   ngAfterContentInit(): void {
@@ -80,6 +83,8 @@ export class SignatureComponent implements AfterContentInit, ControlValueAccesso
         this.errors = injectedControl.control?.errors
       }
     })
+    // this.signImg.src = this.signature
+    // this.invertColor()
   }
 
   sign(event: any) {
@@ -110,5 +115,31 @@ export class SignatureComponent implements AfterContentInit, ControlValueAccesso
   writeValue(value: string): void {
     this.myGroup.patchValue({ value })
     this.signature = value
+  }
+
+  invertColor() {
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d")!;
+  
+    // set width and height to original image width and height
+    canvas.width = 150;
+    canvas.height= 200;
+
+    console.log('signature', this.signImg)
+    console.log('this.myImg', this.myImg)
+    ctx.drawImage(this.signImg,0,0);
+    var imgd = ctx.getImageData(0, 0, this.signImg.width, this.signImg.height);
+    console.log('imgd', imgd)
+    // console.log(imgd)
+    for (let i = 0; i <imgd.data.length; i += 4) {
+        // change these values (RGB) to output new colors
+        imgd.data[i]   = 155;
+        imgd.data[i+1] = 143;
+        imgd.data[i+2] = 143;
+    }
+    ctx.putImageData(imgd, 0, 0);
+    var newImage=new Image()
+    newImage.src=canvas.toDataURL("image/png")
+    console.log('newImage', newImage)
   }
 }
