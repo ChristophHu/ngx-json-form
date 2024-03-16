@@ -52,6 +52,29 @@
     .nxt_input_action_icon
         @apply text-icon
 
+// fileinput
+.nxt_fileupload
+    .nxt_input_label
+        @include nxt_label
+        @apply select-none
+
+    .nxt_input_field
+        @include nxt_input
+        @apply focus:border-static_gray border-borderline
+
+// filelist
+.nxt-filelist
+    @apply focus:border-static_gray border-borderline
+
+.nxt_fileupload_button
+    @apply bg-input text-darker disabled:text-disabled
+
+// galerie
+.nxt_galerie
+    .nxt_input_label
+        @include nxt_label
+        @apply select-none
+
 // radio
 .nxt_radio
     .nxt_radio_label
@@ -119,7 +142,6 @@
 
     .nxt_signature_button
         @include nxt_input
-        // @apply bg-input text-darker disabled:text-disabled
 
     .nxt_signature_header
         @include nxt_label
@@ -132,6 +154,9 @@
 
     .nxt_signature_img
         @apply invert-0
+
+    .nxt_signature_action_icon
+        @apply text-icon
 
 .dark
     .nxt_signature_img
