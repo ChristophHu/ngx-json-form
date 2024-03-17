@@ -12,8 +12,8 @@ input:focus-within ~ label
 .dropdown.open > ul
     @apply block
 
-input::file-selector-button
-    @apply h-full w-40 px-4 bg-gray-200 border-none
+//input::file-selector-button
+    //@apply h-full w-40 px-4 bg-gray-200 border-none
 
 .scrollbar-hide
     -ms-overflow-style: none
@@ -54,3 +54,5 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator
         &:focus
             outline: none
 
+input[type="file"]
+    display: none

@@ -330,6 +330,11 @@ export class NgxJsonFormComponent {
   }
 
   // file upload
+  uploadBtn(t: any) {
+    console.log('t', t)
+    document.getElementById(t)?.click()
+  }
+
   addFiles(event: Event) {
     this.toUploadFilesList = []
     const { target } = event
