@@ -251,6 +251,11 @@ export class AppComponent {
     })
 
     this._jsonFormService.setFormData(this.formValue)
+    this._jsonFormService.files$.subscribe({
+      next: (files) => {
+        console.log('files: ', files)
+      }
+    })
   }
 
   valueChanges(formValue: any) {

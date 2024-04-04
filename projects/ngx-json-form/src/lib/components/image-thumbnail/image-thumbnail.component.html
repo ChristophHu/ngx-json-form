@@ -1,5 +1,5 @@
 <div class="nxt-image-thumbnail flex overflow-x-auto h-32 mt-2 rounded scrollbar-hide" >
-    <div class="flex h-16 w-32 p-2 flex-shrink-0 justify-center" *ngFor="let image of images$ | async">
+    <div class="flex h-32 w-32 p-2 flex-shrink-0 justify-center" *ngFor="let image of images$ | async">
         <img class="h-full cursor-pointer" [src]="image | sanitize:'url'" alt="Image Source"  (click)="openImage(image)">
     </div>
 </div>

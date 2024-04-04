@@ -14,11 +14,7 @@ export class JsonFormService {
   private readonly _files = new BehaviorSubject<string[]>([])
   files$: Observable<any> = this._files.asObservable()
 
-  constructor() {
-    // this.files$.subscribe((files: any) => {
-    //   this._formData.next(files)
-    // })
-  }
+  constructor() {}
 
   setFormData(formData: any) {
     this._formData.next(formData)
@@ -32,7 +28,6 @@ export class JsonFormService {
   }
 
   setFiles(files: any) {
-    // console.log('update ', files)
     this._files.next(files)
   }
 }

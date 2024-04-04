@@ -331,7 +331,6 @@ export class NgxJsonFormComponent {
 
   // file upload
   uploadBtn(t: any) {
-    console.log('t', t)
     document.getElementById(t)?.click()
   }
 
@@ -368,7 +367,7 @@ export class NgxJsonFormComponent {
         var reader: FileReader = new FileReader()
         var imgSrcData
         reader.onloadend = (fileLoadedEvent: any) => {
-          imgSrcData = fileLoadedEvent.target.result // <--- data: base64 
+          imgSrcData = fileLoadedEvent.target.result // <--- data: base64
           this.toUploadBase64List.push(imgSrcData)
         }
         reader.readAsDataURL(fileToLoad)
@@ -391,7 +390,6 @@ export class NgxJsonFormComponent {
           progressCount: 0
         }
       }
-      console.log(newFile)
       this.toUploadFilesList.push(newFile)
     })
   }
