@@ -210,6 +210,7 @@ export class AppComponent {
           {
             type: 'imageslider',
             disabled: false,
+            files$: this._jsonFormService.files$,
             hidden: false,
             key: 'images',
             label: 'Galerie'
@@ -251,11 +252,11 @@ export class AppComponent {
     })
 
     this._jsonFormService.setFormData(this.formValue)
-    this._jsonFormService.files$.subscribe({
-      next: (files) => {
-        console.log('files: ', files)
-      }
-    })
+    // this._jsonFormService.files$.subscribe({
+    //   next: (files) => {
+    //     console.log('files: ', files)
+    //   }
+    // })
   }
 
   valueChanges(formValue: any) {
