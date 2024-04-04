@@ -139,7 +139,7 @@ export class AppComponent {
           },
           {
             type: 'select',
-            disabled: false,
+            disabled: true,
             hidden: false,
             key: 'funktion',
             label: 'Funktion',

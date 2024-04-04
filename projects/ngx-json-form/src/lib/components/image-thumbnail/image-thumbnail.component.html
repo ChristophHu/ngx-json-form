@@ -1,12 +1,12 @@
-<div class="nxt-image-thumbnail flex overflow-x-auto h-16 mt-2 rounded scrollbar-hide" >
-    <div class="flex h-16 w-16 p-2 flex-shrink-0 justify-center" *ngFor="let image of images$ | async">
+<div class="nxt-image-thumbnail flex overflow-x-auto h-32 mt-2 rounded scrollbar-hide" >
+    <div class="flex h-16 w-32 p-2 flex-shrink-0 justify-center" *ngFor="let image of images$ | async">
         <img class="h-full cursor-pointer" [src]="image | sanitize:'url'" alt="Image Source"  (click)="openImage(image)">
     </div>
 </div>
 
 <section *ngIf="showModal" class="fixed inset-0 overflow-hidden">
-  <div class="min-h-screen bg-black bg-opacity-60 z-50" @fadeIn @fadeOut (click)="close()"></div>
-  <div *ngIf="showModal" (click)="$event.stopPropagation()" @fadeInTop @fadeOutTop class="nxt_image_modal z-60 absolute flex h-3/4 top-4 right-4 left-4 lg:top-12 lg:right-12 lg:left-12 justify-center rounded-lg shadow-lg">
+  <div class="min-h-screen bg-black bg-opacity-60 z-100" @fadeIn @fadeOut (click)="close()"></div>
+  <div *ngIf="showModal" (click)="$event.stopPropagation()" @fadeInTop @fadeOutTop class="nxt_image_modal z-110 absolute flex h-3/4 top-4 right-4 left-4 lg:top-12 lg:right-12 lg:left-12 justify-center rounded-lg shadow-lg">
       <div class="absolute top-2 right-2 h-6 w-6 stroke-2 cursor-pointer" (click)="close()">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18" stroke-linecap="round" stroke-linejoin="round" /><path d="M6 6L18 18" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </div>

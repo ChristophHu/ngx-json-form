@@ -94,6 +94,9 @@
         @include nxt_input
         @apply focus:border-light border-borderline
 
+        &:disabled
+            @apply text-disabled
+
     .nxt_select_search
         @apply bg-secondary text-icon
 
@@ -189,3 +192,8 @@
 // input::file-selector-button
 input::file-selector-button
     @apply h-full w-40 px-4 bg-gray-200 border-none
+
+
+// table
+.mat-mdc-select-disabled
+    @apply text-disabled #{!important}
