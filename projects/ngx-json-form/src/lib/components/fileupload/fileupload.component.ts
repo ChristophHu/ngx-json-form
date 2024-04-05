@@ -71,8 +71,9 @@ export class FileuploadComponent implements ControlValueAccessor {
   }
 
   uploadFiles(): void {
-    const requestsList = this.constructRequestsChain()
-    this.executeFileUpload(requestsList)
+    // const requestsList = this.constructRequestsChain()
+    // this.executeFileUpload(requestsList)
+    this.onChange(this.toUploadBase64List)
   }
 
   async fileChangeEvent(event: Event) {
@@ -103,8 +104,6 @@ export class FileuploadComponent implements ControlValueAccessor {
         console.log('Catch-Error: ', error)
       }
     }
-    console.log('toUploadBase64List: ', this.toUploadBase64List)
-    this.onChange(this.toUploadBase64List)
     // this._jsonFormService.setFiles(this.toUploadBase64List)
   }
 

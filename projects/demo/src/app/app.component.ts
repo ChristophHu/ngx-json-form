@@ -275,6 +275,8 @@ export class AppComponent {
     // get data back only if form is valid
     // console.log('valueChanges: ', formValue)
     this.formValue = formValue
+
+    console.log('formValue: ', this.formValue)
   }
 
   statusChanges(formStatus: any) {
