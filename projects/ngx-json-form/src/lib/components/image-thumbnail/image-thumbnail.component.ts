@@ -49,9 +49,6 @@ export class ImageThumbnailComponent {
   images$: Observable<any> = of([])
 
   constructor(private _jsonFormService: JsonFormService) {
-    this._jsonFormService.files$.subscribe(files => {
-      console.log(files)
-    })
     this.images$ = this._jsonFormService.files$
   }
 

@@ -154,13 +154,14 @@
 
             <!-- fileupload -->
             <ng-container *ngIf="control.type === 'fileupload'">
-                <div class="nxt_fileupload flex flex-col w-full mt-2" [ngClass]="{ 'hidden': control.hidden }">
+                <fileupload [formControlName]="control.key" [control]="control"></fileupload>
+                <!-- <div class="nxt_fileupload flex flex-col w-full mt-2" [ngClass]="{ 'hidden': control.hidden }">
                     <label class="nxt_input_label my-2 text-sm leading-none">{{ control.label }}</label>
                     <input type="file" [formControlName]="control.key" [id]="control.key" [multiple]="control.multiple" class="relative flex h-10 w-full mt-1 bg-gray-100 border rounded focus:outline-none text-sm font-medium leading-none text-light" placeholder="{{ control.placeholder }}" (change)="fileChangeEvent($event)" />
                     <button (click)="uploadBtn(control.key)" class="nxt_fileupload_button p-2 w-full font-sans italic text-cemter rounded bg-input text-darker disabled:text-disabled" [disabled]="toUploadFilesList.length > 0 || control.disabled">Dateien auswählen</button>
-                </div>
+                </div> -->
                 <!-- filelist -->
-                <ng-container *ngIf="control.multiple && toUploadFilesList.length > 0">
+                <!-- <ng-container *ngIf="control.multiple && toUploadFilesList.length > 0">
                     <div class="filelist flex flex-col min-w-full max-h-48 -mt-1 mb-2 border border-gray-200 rounded-b overflow-y-scroll scrollbar-hide z-20">
                         <div class="flex flex-col h-20 p-2" *ngFor="let item of toUploadFilesList; index as index">
                             <div class="flex flex-col w-full">
@@ -181,16 +182,15 @@
                                     <hr class="absolute top-0 h-1 rounded-sm bg-indigo-700" [ngStyle]="{ 'width': item.uploadStatus.progressCount + '%' }" />
                                 </div>
                             </div>
-                            <!-- <pre>{{ item | json }}</pre> -->
                         </div>
                     </div>
                     <div class="flex justify-end">
-                        <button class="w-40 p-2 bg-blue-200 rounded" (click)="uploadFiles()">Upload Files</button>
+                        <button class="w-40 p-2 bg-accent text-darker rounded" (click)="uploadFiles()">Upload Files</button>
                     </div>
-                </ng-container>
-                <ng-container *ngIf="!control.multiple && toUploadFilesList">
+                </ng-container> -->
+                <!-- <ng-container *ngIf="!control.multiple && toUploadFilesList">
                     SingleImage?
-                </ng-container>
+                </ng-container> -->
             </ng-container>
 
             <!-- galery -->
