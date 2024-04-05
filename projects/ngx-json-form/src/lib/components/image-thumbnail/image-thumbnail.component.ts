@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { JsonFormService } from '../../services/json-form.service';
 import { Observable, of } from 'rxjs';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -46,7 +46,7 @@ export class ImageThumbnailComponent {
   showModal = false
   test: any
 
-  images$: Observable<any> = of()
+  images$: Observable<any> = of([])
 
   constructor(private _jsonFormService: JsonFormService) {
     this.images$ = this._jsonFormService.files$

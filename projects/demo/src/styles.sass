@@ -28,7 +28,7 @@
         --dark          : rgb(41, 41, 43)
         --darker        : rgb(21, 21, 23)
         --placeholder   : rgb(174, 174, 174)
-        --disabled      : rgb(174, 174, 174)
+        --disabled      : rgb(37, 99, 235)
         --static-gray   : rgb(141, 141, 141)
 
         // input
@@ -58,7 +58,7 @@
         --lighter       : rgb(21, 21, 23)
         --light         : rgb(41, 41, 43)
         --placeholder   : rgb(141, 141, 141)
-        --disabled      : rgb(141, 141, 141)
+        --disabled      : rgb(37, 99, 235)
         --static-gray   : rgb(141, 141, 141)
 
         // input
@@ -268,6 +268,12 @@ body
     .nxt_toggle_field
         @apply bg-gray-100 dark:bg-gray-800
 
+// galerie
+.nxt_galerie
+    .nxt_input_label
+        @include nxt_label
+        @apply select-none
+
 // select dropdown text and check-icon color
 .mdc-list-item .mdc-list-item__primary-text
     @apply text-dark
@@ -282,3 +288,7 @@ body
 // input::file-selector-button
 input::file-selector-button
     @apply h-full w-40 px-4 bg-gray-200 border-none
+
+// table
+.mat-mdc-select-disabled
+    @apply text-disabled #{!important}

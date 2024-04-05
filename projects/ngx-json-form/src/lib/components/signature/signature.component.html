@@ -2,10 +2,10 @@
   <button *ngIf="!signature || signature=='0'" class="nxt_signature_button p-2 w-full font-sans italic text-cemter rounded bg-input text-darker disabled:text-disabled" (click)="openSignPad()" [disabled]="isDisabled">
     unterschreiben
   </button>
-  <div *ngIf="signature" class="nxt_signature_field relative flex p-2 bg-input text-darker justify-end rounded">
+  <div *ngIf="signature" class="nxt_signature_field relative flex p-2 bg-input text-darker border border-borderline justify-end rounded">
     <img class="nxt_signature_img invert-0 z-20" src="{{ signature }}" alt="" srcset="" />
-    <div class="nxt_signature_action_icon absolute top-2 right-2 h-5 w-5 stroke-2 cursor-pointer z-90" (click)="clear()">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18" stroke-linecap="round" stroke-linejoin="round" /><path d="M6 6L18 18" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    <div class="nxt_signature_action_icon grid absolute top-0 right-0 h-8 w-8 stroke-2 place-items-center cursor-pointer z-90" (click)="clear()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
     </div>
   </div>
   

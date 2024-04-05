@@ -84,63 +84,64 @@ type ToggleControl = {
   validators?:    IValidator[]
 }
 type RadioControl = {
-  type: 'radio',
-  defaultValue?: string,
-  disabled?: boolean,
-  key: string,
-  label: string,
-  options: Options[],
-  validators?: IValidator[]
+  type            : 'radio',
+  defaultValue?   : string,
+  disabled?       : boolean,
+  key             : string,
+  label           : string,
+  options         : Options[],
+  validators?     : IValidator[]
 }
 type DateTimeControl = {
-  type: 'datetime-local',
-  defaultValue?: Date | string,
-  disabled?: boolean,
-  hidden?: boolean,
-  key: string,
-  label: string,
-  placeholder: string,
-  validators?: IValidator[]
+  type            : 'datetime-local',
+  defaultValue?   : Date | string,
+  disabled?       : boolean,
+  hidden?         : boolean,
+  key             : string,
+  label           : string,
+  placeholder     : string,
+  validators?     : IValidator[]
 }
 type FileUploadControl = {
-  type: 'fileupload',
-  disabled?: boolean,
-  hidden?: boolean,
-  key: string,
-  label: string,
-  placeholder?: string,
-  multiple?: boolean,
+  type            : 'fileupload',
+  disabled?       : boolean,
+  hidden?         : boolean,
+  key             : string,
+  label           : string,
+  placeholder?    : string,
+  multiple?       : boolean,
   upload: {
-    url: string,
-    type: 'blob' | 'base64' | 'binary' | 'file' | 'json' | 'text' 
+    url           : string,
+    type          : 'blob' | 'base64' | 'binary' | 'file' | 'json' | 'text' 
   }
 }
 type ImageSliderControl = {
-  type: 'imageslider',
-  disabled?: boolean,
-  hidden?: boolean,
-  key: string,
-  label: string
+  type            : 'imageslider',
+  disabled?       : boolean,
+  files$          : Observable<any>,
+  hidden?         : boolean,
+  key             : string,
+  label           : string
 }
 interface SignatureControl extends IComponent {
-  type:           'signature',
-  rules?:         IRule[],
-  validators?:    IValidator[]
+  type            : 'signature',
+  rules?          : IRule[],
+  validators?     : IValidator[]
 }
 
 interface SearchSelectControl extends IComponent {
-  type:           'searchselect',
-  rules?:         IRule[],
-  validators?:    IValidator[]
+  type            : 'searchselect',
+  rules?          : IRule[],
+  validators?     : IValidator[]
 }
 
 interface IComponent {
-  key: string,
-  label: string | Observable<string>,
-  disabled: boolean,
-  hidden: boolean,
-  description?: string,
-  depended?: any
+  key             : string,
+  label           : string | Observable<string>,
+  disabled        : boolean,
+  hidden          : boolean,
+  description?    : string,
+  depended?       : any
 }
 
 // interface IDependency {
