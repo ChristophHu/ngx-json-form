@@ -111,7 +111,7 @@ export class FileuploadComponent implements ControlValueAccessor {
     Array.from(filesList).forEach((item: File, index: number) => {
       const newFile: ExtendedFileModel = {
         file: item,
-        uploadUrl: this.control.upload.url, //(index % 2 === 0) ? this.upload.url: '',
+        uploadUrl: this.control.upload.url,
         uploadStatus: {
           isSucess: false,
           isError: false,

@@ -6,6 +6,7 @@ export * from './lib/ngx-json-form.module'
 
 // components
 export * from './lib/ngx-json-form.component'
+export * from './lib/components/fileupload/fileupload.component'
 export * from './lib/components/scroll-indicator/scroll-indicator.component'
 export * from './lib/components/select-dropdown/select-dropdown.component'
 export * from './lib/components/signature/signature.component'

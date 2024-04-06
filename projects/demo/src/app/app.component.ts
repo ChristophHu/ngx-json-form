@@ -209,7 +209,7 @@ export class AppComponent {
             disabled: false,
             hidden: false,
             key: 'file',
-            label: 'Datei',
+            label: 'Dateien hochladen',
             placeholder: 'Datei',
             multiple: true,
             upload: {
