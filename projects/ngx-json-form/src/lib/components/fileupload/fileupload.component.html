@@ -1,0 +1,36 @@
+<div class="nxt_fileupload flex flex-col w-full mt-2" [ngClass]="{ 'hidden': control.hidden }">
+    <label class="nxt_input_label my-2 text-sm leading-none">{{ control.label }}</label>
+    <input type="file" [name]="control.key" [id]="control.key" [multiple]="control.multiple" class="hidden relative flex h-10 w-full mt-1 bg-gray-100 border rounded focus:outline-none text-sm font-medium leading-none text-light" placeholder="{{ control.placeholder }}" (change)="fileChangeEvent($event)" />
+    <button (click)="uploadBtn(control.key)" class="nxt_fileupload_button p-2 w-full font-sans italic text-cemter rounded bg-input text-darker disabled:text-disabled" [disabled]="toUploadFilesList.length > 0 || control.disabled">Dateien auswählen</button>
+</div>
+<ng-container *ngIf="control.multiple && toUploadFilesList.length > 0">
+    <div class="filelist flex flex-col min-w-full max-h-48 mb-2 border border-input bg-tertiary rounded-b-2 overflow-y-scroll scrollbar-hide z-20">
+        <div class="flex flex-col h-16" *ngFor="let item of toUploadFilesList; index as index">
+            <div class="flex flex-row border-t border-input">
+                <div class="w-20">
+                    <img class="h-16 w-16 rounded" [src]="toUploadBase64List[index] | sanitize:'url'">
+                </div>
+                <div class="relative flex flex-col w-full">
+                    <div class="absolute right-1 top-1 left-1 h-12 flex justify-between items-center">
+                        <div class="items-center text-dark flex">
+                            <p class="text-dark font-normal text-base tracking-normal mr-4">{{ item.file.name }}</p>
+                        </div>
+                        <div class="flex flex-row space-x-5 items-center cursor-pointer text-gray-400">
+                            <p class="text-dark font-normal text-base tracking-normal">{{ item.uploadStatus.progressCount }}%</p>
+                            <div class="h-4 w-4 stroke-2 cursor-pointer" (click)="deleteImage(index)">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18" stroke-linecap="round" stroke-linejoin="round" /><path d="M6 6L18 18" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute right-0 bottom-0 left-0 h-4 p-1">
+                        <div class="absolute right-1 left-1 h-1 rounded-sm bg-light"></div>
+                        <div class="absolute h-1 rounded-sm bg-accent" [ngStyle]="{ 'width': item.uploadStatus.progressCount + '%' }"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-end">
+        <button class="w-40 p-2 bg-accent text-darker rounded" (click)="uploadFiles()">Dateien hochladen</button>
+    </div>
+</ng-container>

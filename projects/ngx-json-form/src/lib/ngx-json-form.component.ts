@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select'
 import { SelectDropdownComponent } from './components/select-dropdown/select-dropdown.component'
 import { HiddenDirective } from './directives/hidden/hidden.directive'
 import { SignatureComponent } from './components/signature/signature.component'
+import { FileuploadComponent } from './components/fileupload/fileupload.component'
 // import { AutofocusDirective } from './directives/autofocus/autofocus.directive'
 
 @Component({
@@ -28,6 +29,7 @@ import { SignatureComponent } from './components/signature/signature.component'
     // AutofocusDirective,
     CommonModule,
     FormsModule,
+    FileuploadComponent,
     HiddenDirective,
     IndexOfObjectValuePipe,
     ImageThumbnailComponent,
@@ -112,12 +114,6 @@ export class NgxJsonFormComponent {
     }
   ]
   resetOption: any
-
-  // fileupload
-  fileList: boolean = true
-  toUploadFilesList: ExtendedFileModel[] = []
-  toUploadBase64List: string[] = []
-  upload: any
   
   constructor(private _jsonFormService: JsonFormService, private _fileuploadService: FileuploadService) {}
 
@@ -146,9 +142,9 @@ export class NgxJsonFormComponent {
           this.dependedKeys.push(fieldDesc.dependOnKey)
         }
         // seperate fileupload
-        if (fieldDesc.type == 'fileupload') {
-          this.upload = fieldDesc.upload
-        }
+        // if (fieldDesc.type == 'fileupload') {
+        //   this.upload = fieldDesc.upload
+        // }
         let disabled: boolean = fieldDesc.disabled
 
         // create validators
@@ -327,102 +323,5 @@ export class NgxJsonFormComponent {
   }
   setDateTime(key: string) {
     this.dynamicForm.get(key)?.setValue(getLocalISO('now'))
-  }
-
-  // file upload
-  uploadBtn(t: any) {
-    console.log('t', t)
-    document.getElementById(t)?.click()
-  }
-
-  addFiles(event: Event) {
-    this.toUploadFilesList = []
-    const { target } = event
-    const filesList = (target as HTMLInputElement).files
-    if (!filesList) return
-    this.constructToUploadFilesList(filesList)
-  }
-
-  uploadFiles(): void {
-    const requestsList = this.constructRequestsChain()
-    this.executeFileUpload(requestsList)
-  }
-
-  async fileChangeEvent(event: Event) {
-    this.toUploadFilesList = []
-    this.toUploadBase64List = []
-    const { target } = event
-    const filesList = (target as HTMLInputElement).files
-    if (!filesList) return
-    this.constructToUploadFilesList(filesList)
-
-    const options = {
-      maxSizeMB: 2,
-      maxWidthOrHeight: 1920,
-      useWebWorker: true
-    }
-    for (const file of Array.from(filesList)) {
-      try {
-        var fileToLoad = file 
-
-        var reader: FileReader = new FileReader()
-        var imgSrcData
-        reader.onloadend = (fileLoadedEvent: any) => {
-          imgSrcData = fileLoadedEvent.target.result // <--- data: base64 
-          this.toUploadBase64List.push(imgSrcData)
-        }
-        reader.readAsDataURL(fileToLoad)
-      } catch (error) {
-        console.log('Catch-Error: ', error)
-      }
-    }
-    this._jsonFormService.setFiles(this.toUploadBase64List)
-  }
-
-  private constructToUploadFilesList(filesList: FileList): void {
-    Array.from(filesList).forEach((item: File, index: number) => {
-      const newFile: ExtendedFileModel = {
-        file: item,
-        uploadUrl: this.upload.url, //(index % 2 === 0) ? this.upload.url: '',
-        uploadStatus: {
-          isSucess: false,
-          isError: false,
-          errorMessage: '',
-          progressCount: 0
-        }
-      }
-      console.log(newFile)
-      this.toUploadFilesList.push(newFile)
-    })
-  }
-
-  private constructRequestsChain(): any {
-    return this.toUploadFilesList.map((item, index) => {
-      return this._fileuploadService.uploadFiles(item).pipe(
-        tap((event) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            this.toUploadFilesList[index].uploadStatus.progressCount = Math.round(100 * (event.loaded / event.total))
-          }
-        }),
-        catchError((error) => {
-          return of({ isError: true, index, error })
-        })
-      )
-    })
-  }
-
-  private executeFileUpload(requestsChain: any[]): void {
-    forkJoin(requestsChain).subscribe((response: any) => {
-      response.forEach((item: { isError: any; index: number; error: { statusText: string } }) => {
-        if (item.isError) {
-          this.toUploadFilesList[item.index].uploadStatus.isError = true
-          this.toUploadFilesList[item.index].uploadStatus.errorMessage = item.error.statusText
-        }
-      })
-    })
-  }
-
-  deleteImage(index: number) {
-    this.toUploadFilesList.splice(index, 1)
   }
 }
