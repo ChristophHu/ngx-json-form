@@ -4,16 +4,16 @@
     <button (click)="uploadBtn(control.key)" class="nxt_fileupload_button p-2 w-full font-sans italic text-cemter rounded bg-input text-darker disabled:text-disabled" [disabled]="toUploadFilesList.length > 0 || control.disabled">Dateien auswählen</button>
 </div>
 <ng-container *ngIf="control.multiple && toUploadFilesList.length > 0">
-    <div class="filelist flex flex-col min-w-full max-h-48 -mt-1 mb-2 border border-input bg-tertiary rounded-b-2 overflow-y-scroll scrollbar-hide z-20">
-        <div class="flex flex-col h-20 p-2" *ngFor="let item of toUploadFilesList; index as index">
+    <div class="filelist flex flex-col min-w-full max-h-48 mb-2 border border-input bg-tertiary rounded-b-2 overflow-y-scroll scrollbar-hide z-20">
+        <div class="flex flex-col h-16" *ngFor="let item of toUploadFilesList; index as index">
             <div class="flex flex-row border-t border-input">
-                <div class="h-16 w-20 mt-2">
+                <div class="w-20">
                     <img class="h-16 w-16 rounded" [src]="toUploadBase64List[index] | sanitize:'url'">
                 </div>
-                <div class="flex flex-col w-full">
-                    <div class="flex justify-between items-center w-full">
+                <div class="relative flex flex-col w-full">
+                    <div class="absolute right-1 top-1 left-1 h-12 flex justify-between items-center">
                         <div class="items-center text-dark flex">
-                            <p class="text-dark font-normal text-base tracking-normal ml-2 mr-4">{{ item.file.name }}</p>
+                            <p class="text-dark font-normal text-base tracking-normal mr-4">{{ item.file.name }}</p>
                         </div>
                         <div class="flex flex-row space-x-5 items-center cursor-pointer text-gray-400">
                             <p class="text-dark font-normal text-base tracking-normal">{{ item.uploadStatus.progressCount }}%</p>
@@ -22,17 +22,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="relative mb-2 mt-2">
-                        <hr class="h-1 rounded-sm bg-static_gray" />
-                        <hr class="absolute top-0 h-1 rounded-sm bg-accent" [ngStyle]="{ 'width': item.uploadStatus.progressCount + '%' }" />
+                    <div class="absolute right-0 bottom-0 left-0 h-4 p-1">
+                        <div class="absolute right-1 left-1 h-1 rounded-sm bg-light"></div>
+                        <div class="absolute h-1 rounded-sm bg-accent" [ngStyle]="{ 'width': item.uploadStatus.progressCount + '%' }"></div>
                     </div>
                 </div>
             </div>
-            <!-- <pre>{{ item | json }}</pre> -->
         </div>
     </div>
     <div class="flex justify-end">
         <button class="w-40 p-2 bg-accent text-darker rounded" (click)="uploadFiles()">Dateien hochladen</button>
     </div>
 </ng-container>
-<!-- <pre>{{ control | json }}</pre> -->
