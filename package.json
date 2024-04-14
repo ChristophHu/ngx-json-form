@@ -10,7 +10,7 @@
     "preprocess": "tailwindcss -c ./projects/demo/tailwind.config.js -o ./projects/ngx-json-form/src/lib/tailwind.scss & ng build ngx-json-form",
     "publish": "cd dist/ngx-json-form && npm publish --access public"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "^17.2.0",
     "@angular/common": "^17.2.0",
