@@ -57,7 +57,7 @@
                     <label class="nxt_input_label my-2 text-sm leading-none">{{ control.label }}</label>
                     <div class="nxt_input_area w-full mt-1 border border-borderline rounded">
                         <div class="relative h-32 w-full" resizeable>
-                            <textarea [formControlName]="control.key" [id]="control.key" class="absolute inset-0 pt-3 px-3 bg-transparent text-sm font-medium leading-none rounded scrollbar-hide" id="" cols="30" rows="5" placeholder="{{control.placeholder}}"></textarea>
+                            <textarea [formControlName]="control.key" [id]="control.key" class="absolute inset-0 pt-3 px-3 bg-transparent text-sm font-medium leading-none rounded scrollbar-hide" cols="30" rows="5" placeholder="{{control.placeholder}}"></textarea>
                         </div>
                     </div>
                     <div *ngIf="dynamicForm.get(control.key)?.hasError('email')" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} must be a valid email-address.</div>
