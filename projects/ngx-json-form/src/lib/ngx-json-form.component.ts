@@ -320,9 +320,12 @@ export class NgxJsonFormComponent {
   // input options
   delete(key: string) {
     this.dynamicForm.get(key)?.setValue('')
+    this.dynamicForm.get(key)?.markAsDirty()
+    this.dynamicForm.get(key)?.updateValueAndValidity()
   }
   setDateTime(key: string) {
     this.dynamicForm.get(key)?.setValue(getLocalISO('now'))
     this.dynamicForm.get(key)?.markAsDirty()
+    this.dynamicForm.get(key)?.updateValueAndValidity()
   }
 }
