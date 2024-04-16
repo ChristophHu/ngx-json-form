@@ -1,6 +1,6 @@
 {
   "name": "@christophhu/ngx-json-form",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Create Angular reactive forms by a JSON Schema.",
   "license": "MIT",
   "author": {
