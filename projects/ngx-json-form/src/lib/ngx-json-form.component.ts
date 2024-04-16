@@ -323,5 +323,6 @@ export class NgxJsonFormComponent {
   }
   setDateTime(key: string) {
     this.dynamicForm.get(key)?.setValue(getLocalISO('now'))
+    this.dynamicForm.get(key)?.markAsDirty()
   }
 }
