@@ -198,6 +198,17 @@ export class AppComponent {
             placeholder: ''
           },
           {
+            type: 'datetime-local',
+            defaultValue: '',
+            hidden: false,
+            key: 'dayOfBirth',
+            label: '1. Geburtstag',
+            placeholder: '',
+            rules: [
+              { property: 'customerror', dependOn: { key: 'dayOfBirth', operation: 'lt', except: true }, value: true }
+            ],
+          },
+          {
             type: 'textarea',
             defaultValue: '',
             key: 'description',

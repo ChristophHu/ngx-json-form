@@ -141,6 +141,10 @@ export class NgxJsonFormComponent {
           // console.log('fieldDesc.dependOnKey', fieldDesc)
           this.dependedKeys.push(fieldDesc.dependOnKey)
         }
+        if (fieldDesc.rules) {
+          this.rules.push(fieldDesc)
+          console.log('rules', this.rules)
+        }
         // seperate fileupload
         // if (fieldDesc.type == 'fileupload') {
         //   this.upload = fieldDesc.upload

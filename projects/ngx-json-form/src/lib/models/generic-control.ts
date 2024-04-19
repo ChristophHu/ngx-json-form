@@ -100,6 +100,7 @@ type DateTimeControl = {
   key             : string,
   label           : string,
   placeholder     : string,
+  rules?          : IRule[],
   validators?     : IValidator[]
 }
 type FileUploadControl = {
@@ -153,6 +154,7 @@ interface IRule {
   property: string,
   dependOn?: {
     key: string,
+    self?: string,
     operation: 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin' | 'regex' | 'exists' | 'notexists' | 'contains' | 'notcontains' | 'includes' | 'startswith' | 'endswith',
     except: any
   },
