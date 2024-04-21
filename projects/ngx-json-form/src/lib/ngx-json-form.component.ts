@@ -142,7 +142,7 @@ export class NgxJsonFormComponent {
           this.dependedKeys.push(fieldDesc.dependOnKey)
         }
         if (fieldDesc.rules) {
-          this.rules.push(fieldDesc)
+          this.rules.push({ type: fieldDesc.type, key: fieldDesc.key, rules: fieldDesc.rules})
           console.log('rules', this.rules)
         }
         // seperate fileupload
@@ -307,7 +307,7 @@ export class NgxJsonFormComponent {
   }
 
   // rules
-  isHiddenRule(control: any): boolean | Observable<boolean> {
+  isHiddenRule(control: any): boolean {
     const rule = control.rules?.find((el: any) => el.property == 'hidden')
     if (rule == undefined || rule.dependOn == undefined) return false
     switch (rule.dependOn?.operation) {
@@ -317,6 +317,8 @@ export class NgxJsonFormComponent {
       case 'ne':
         if (this.dynamicForm.controls[rule.dependOn.key].value != rule.dependOn.except) return rule.value
         break
+      default:
+        console.log('rule.operation not defined')
     }
     return false
   }

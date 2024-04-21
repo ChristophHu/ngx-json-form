@@ -149,7 +149,7 @@ export class AppComponent {
           },
           {
             type: 'select',
-            disabled: true,
+            disabled: false,
             hidden: false,
             key: 'funktion',
             label: 'Funktion',
@@ -169,7 +169,7 @@ export class AppComponent {
             type: 'input',
             class: '',
             defaultValue: 0,
-            disabled: true,
+            disabled: false,
             hidden: false,
             key: 'function_id',
             label: 'DependedInput',
@@ -201,11 +201,11 @@ export class AppComponent {
             type: 'datetime-local',
             defaultValue: '',
             hidden: false,
-            key: 'dayOfBirth',
+            key: 'dayOfBirth2',
             label: '1. Geburtstag',
             placeholder: '',
             rules: [
-              { property: 'customerror', dependOn: { key: 'dayOfBirth', operation: 'lt', except: true }, value: true }
+              { property: 'compare', dependOn: { key: 'dayOfBirth', operation: 'lt', except: true }, value: true }
             ],
           },
           {
@@ -273,6 +273,7 @@ export class AppComponent {
     })
 
     this._jsonFormService.setFormData(this.formValue)
+    
     // this._jsonFormService.files$.subscribe({
     //   next: (files) => {
     //     console.log('files: ', files)
