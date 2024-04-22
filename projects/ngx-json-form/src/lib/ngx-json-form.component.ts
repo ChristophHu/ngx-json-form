@@ -20,6 +20,7 @@ import { SelectDropdownComponent } from './components/select-dropdown/select-dro
 import { HiddenDirective } from './directives/hidden/hidden.directive'
 import { SignatureComponent } from './components/signature/signature.component'
 import { FileuploadComponent } from './components/fileupload/fileupload.component'
+import { DateFieldComponent } from './components/date-field/date-field.component'
 // import { AutofocusDirective } from './directives/autofocus/autofocus.directive'
 
 @Component({
@@ -28,6 +29,7 @@ import { FileuploadComponent } from './components/fileupload/fileupload.componen
   imports: [
     // AutofocusDirective,
     CommonModule,
+    DateFieldComponent,
     FormsModule,
     FileuploadComponent,
     HiddenDirective,
@@ -52,6 +54,7 @@ export class NgxJsonFormComponent {
   dynamicForm!: FormGroup
   value: any
   loading: boolean = false
+  status: any
 
   // selectoptions
   selectfields: any[] = []
@@ -143,7 +146,6 @@ export class NgxJsonFormComponent {
         }
         if (fieldDesc.rules) {
           this.rules.push({ type: fieldDesc.type, key: fieldDesc.key, rules: fieldDesc.rules})
-          console.log('rules', this.rules)
         }
         // seperate fileupload
         // if (fieldDesc.type == 'fileupload') {
@@ -254,7 +256,7 @@ export class NgxJsonFormComponent {
 
     this.dynamicForm.statusChanges.subscribe({
       next: () => {
-        this.formStatus.emit({ pristine: this.dynamicForm.pristine, dirty: this.dynamicForm.dirty, valid: this.dynamicForm.valid, invalid: this.dynamicForm.invalid, touched: this.dynamicForm.touched, untouched: this.dynamicForm.untouched })
+        this.formStatus.emit({ pristine: this.dynamicForm.pristine, dirty: this.dynamicForm.dirty, valid: this.dynamicForm.valid, invalid: this.dynamicForm.invalid, touched: this.dynamicForm.touched, untouched: this.dynamicForm.untouched })  
       }
     })
 
@@ -268,36 +270,14 @@ export class NgxJsonFormComponent {
           this.formValue.emit(Object.assign({}, this.value, data))
         }
         if (this.dependedKeys) {
-          let dependedSet = new Set(this.dependedKeys)
-          dependedSet.forEach((el: any) => {
-            // depended key value changes
-            let item: any = this.formContent.filter((item: any) => item.hasOwnProperty('dependOnKey') && item.dependOnKey == el)
-            item.forEach((item: any) => {
-              switch (item.type) {
-                case 'input':
-                  // patch value of depended input
-                  let option: any = item.options.find((option: any) => option.value == this.dynamicForm.controls[el].value)
-                  if (option) {
-                    this.loading = true
-                    var obj: any = {}
-                    obj[item.key] = option.label
-    
-                    this.dynamicForm.patchValue(obj)
-                    this.loading = false
-                  }
-                  break
-                case 'dependedselect':
-                  // update options on depended select
-                  item.dependedOptions$ = item.options$.pipe(
-                    map((options: any) => options.filter((option: any) => option.dep == this.dynamicForm.controls[el].value)),
-                    // tap((options: any) => { console.log('last options', options)})
-                  )
-                  break
-                default:
-                  console.log('item.type undefined')
-              }
-            })
-          })
+          this.loading = true
+          this.checkDependencies()
+          this.loading = false
+        }
+        if (this.rules) {
+          this.loading = true
+          this.checkRules()
+          this.loading = false
         }
       },
       complete: () => {
@@ -307,9 +287,108 @@ export class NgxJsonFormComponent {
   }
 
   // rules
+  checkDependencies() {
+    let dependedSet = new Set(this.dependedKeys)
+    dependedSet.forEach((el: any) => {
+      // depended key value changes
+      let item: any = this.formContent.filter((item: any) => item.hasOwnProperty('dependOnKey') && item.dependOnKey == el)
+      item.forEach((item: any) => {
+        switch (item.type) {
+          case 'input':
+            // patch value of depended input
+            let option: any = item.options.find((option: any) => option.value == this.dynamicForm.controls[el].value)
+            if (option) {
+              // this.loading = true
+              var obj: any = {}
+              obj[item.key] = option.label
+
+              this.dynamicForm.patchValue(obj)
+              // this.loading = false
+            }
+            break
+          case 'dependedselect':
+            // update options on depended select
+            item.dependedOptions$ = item.options$.pipe(
+              map((options: any) => options.filter((option: any) => option.dep == this.dynamicForm.controls[el].value)),
+            )
+            break
+          default:
+            console.log('item.type undefined')
+        }
+      })
+    })
+  }
+
+  checkRules() {
+    this.rules.forEach((el: any) => {
+      if (el.rules) {
+        el.rules.forEach((rule: any) => {
+          switch (rule.property) {
+            /* case 'hidden':
+              if (rule.dependOn) {
+                let control = this.dynamicForm.controls[rule.dependOn.key]
+                if (control.value == rule.dependOn.except) {
+                  if (rule.value) {
+                    this.dynamicForm.get(el.key)?.disable()
+                  } else {
+                    this.dynamicForm.get(el.key)?.enable()
+                  }
+                }
+              }
+              break */
+            case 'compare':
+              console.log('value', this.dynamicForm.controls[el.key].value)
+              if (rule.dependOn.key && !this.checkOperations([this.dynamicForm.controls[el.key].value, this.dynamicForm.controls[rule.dependOn.key].value], rule.dependOn.operation)) {
+                console.warn('fehler key compare', el)
+                console.log(this.dynamicForm.controls[el.key])
+                this.dynamicForm.controls[el.key].setErrors({ 'compare': true })
+                console.log(this.dynamicForm.controls[el.key])
+              } else {
+                this.dynamicForm.controls[el.key].setErrors(null)
+              }
+              console.log('value', rule.dependOn.value)
+              if (rule.dependOn.value && !this.checkOperations([this.dynamicForm.controls[el.key].value, rule.dependOn.value], rule.dependOn.operation)) {
+                console.warn('fehler value compare', el)
+                this.dynamicForm.controls[el.key].setErrors({ 'compare': true })
+              } else {
+                this.dynamicForm.controls[el.key].setErrors(null)
+              }
+              break
+            case 'hidden':
+              break
+            default:
+              console.log('rule.property not defined')
+          }
+        })
+      }
+    })
+  }
+
+  checkOperations(compare: any[], operation: string) {
+    console.log('operation', compare, operation)
+    switch (operation) {
+      case 'eq':
+        if (compare[0] == compare[1]) return true
+        break
+      case 'ne':
+        if (compare[0] != compare[1]) return true
+        break
+      case 'gt':
+        if (compare[0] > compare[1]) return true
+        break
+      case 'lt':
+        if (compare[0] < compare[1]) return true
+        break
+      default:
+        console.log('operation not defined')
+    }
+    return false
+  }
+
   isHiddenRule(control: any): boolean {
     const rule = control.rules?.find((el: any) => el.property == 'hidden')
     if (rule == undefined || rule.dependOn == undefined) return false
+    // if (this.checkOperations(rule.dependOn.key, rule.dependOn.operation, rule.dependOn.except)) return rule.value
     switch (rule.dependOn?.operation) {
       case 'eq':
         if (this.dynamicForm.controls[rule.dependOn.key].value == rule.dependOn.except) return rule.value
