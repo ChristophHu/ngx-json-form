@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common'
 import { Component, OnInit, Input, forwardRef } from '@angular/core'
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule, FormControl } from '@angular/forms'
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule, FormControl, ValidatorFn, Validators } from '@angular/forms'
 import { takeUntil, map } from 'rxjs/operators'
 import { Subject } from 'rxjs'
+import { getLocalISO } from '../../utils/json-form-utils'
 
 @Component({
   selector: 'nxt-date-field',
@@ -21,18 +22,17 @@ import { Subject } from 'rxjs'
 })
 export class DateFieldComponent implements ControlValueAccessor {
   @Input() control: any
-  readonly dateControl: FormControl
+  readonly dateControl: FormControl<string | Date | null>
 
   private readonly _componentDestroyed$ = new Subject()
 
   constructor() {
-    
     this.dateControl = new FormControl(new Date)
 
     this.dateControl.valueChanges.pipe(
       takeUntil(this._componentDestroyed$),
-    ).subscribe((invoiceId: Date) => {
-      this._onChange(invoiceId)
+    ).subscribe((value: any) => {
+      this._onChange(value)
       this._onTouched()
     })
   }
@@ -41,8 +41,6 @@ export class DateFieldComponent implements ControlValueAccessor {
     this._componentDestroyed$.next('')
     this._componentDestroyed$.complete()
   }
-
-  value: any = '';
 
   private _onChange = (_:any) => { }
   private _onTouched = () => { }
@@ -58,5 +56,22 @@ export class DateFieldComponent implements ControlValueAccessor {
   }
   setDisabledState(isDisabled: boolean): void {
     isDisabled ? this.dateControl.disable() : this.dateControl.enable()
+  }
+
+  isRequired() {
+    return this.control.validators.findIndex((validator: any) => validator.required) > -1
+  }
+
+  // input options
+  delete(key: string) {
+    this.dateControl.setValue(null)
+    // this.writeValue('')
+    this.dateControl.markAsDirty()
+    this.dateControl.updateValueAndValidity()
+  }
+  setDateTime(key: string) {
+    this.dateControl.setValue(getLocalISO('now'))
+    this.dateControl.markAsDirty()
+    this.dateControl.updateValueAndValidity()
   }
 }

@@ -7,8 +7,8 @@ export interface ValidationResult {
 export class CustomValidator {
 
     public static validStrongPassword(password: any): any {
-      if (password.pristine) {
-            return null;
+      if (password.untouched) {
+         return null;
       }
 
       let NUMBER_REGEXP: RegExp = new RegExp(/\d/)

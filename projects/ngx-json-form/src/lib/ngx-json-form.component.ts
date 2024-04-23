@@ -336,24 +336,24 @@ export class NgxJsonFormComponent {
                 }
               }
               break */
-            case 'compare':
-              console.log('value', this.dynamicForm.controls[el.key].value)
-              if (rule.dependOn.key && !this.checkOperations([this.dynamicForm.controls[el.key].value, this.dynamicForm.controls[rule.dependOn.key].value], rule.dependOn.operation)) {
-                console.warn('fehler key compare', el)
-                console.log(this.dynamicForm.controls[el.key])
-                this.dynamicForm.controls[el.key].setErrors({ 'compare': true })
-                console.log(this.dynamicForm.controls[el.key])
-              } else {
-                this.dynamicForm.controls[el.key].setErrors(null)
-              }
-              console.log('value', rule.dependOn.value)
-              if (rule.dependOn.value && !this.checkOperations([this.dynamicForm.controls[el.key].value, rule.dependOn.value], rule.dependOn.operation)) {
-                console.warn('fehler value compare', el)
-                this.dynamicForm.controls[el.key].setErrors({ 'compare': true })
-              } else {
-                this.dynamicForm.controls[el.key].setErrors(null)
-              }
-              break
+            // case 'compare':
+            //   console.log('value', this.dynamicForm.controls[el.key].value)
+            //   if (rule.dependOn.key && !this.checkOperations([this.dynamicForm.controls[el.key].value, this.dynamicForm.controls[rule.dependOn.key].value], rule.dependOn.operation)) {
+            //     console.warn('fehler key compare', el)
+            //     console.log(this.dynamicForm.controls[el.key])
+            //     this.dynamicForm.controls[el.key].setErrors({ 'compare': true })
+            //     console.log(this.dynamicForm.controls[el.key])
+            //   } else {
+            //     this.dynamicForm.controls[el.key].setErrors(null)
+            //   }
+            //   console.log('value', rule.dependOn.value)
+            //   if (rule.dependOn.value && !this.checkOperations([this.dynamicForm.controls[el.key].value, rule.dependOn.value], rule.dependOn.operation)) {
+            //     console.warn('fehler value compare', el)
+            //     this.dynamicForm.controls[el.key].setErrors({ 'compare': true })
+            //   } else {
+            //     this.dynamicForm.controls[el.key].setErrors(null)
+            //   }
+            //   break
             case 'hidden':
               break
             default:
@@ -406,11 +406,13 @@ export class NgxJsonFormComponent {
   delete(key: string) {
     this.dynamicForm.get(key)?.setValue('')
     this.dynamicForm.get(key)?.markAsDirty()
+    this.dynamicForm.get(key)?.markAsTouched()
     this.dynamicForm.get(key)?.updateValueAndValidity()
   }
   setDateTime(key: string) {
     this.dynamicForm.get(key)?.setValue(getLocalISO('now'))
     this.dynamicForm.get(key)?.markAsDirty()
+    this.dynamicForm.get(key)?.markAsTouched()
     this.dynamicForm.get(key)?.updateValueAndValidity()
   }
 }

@@ -25,16 +25,6 @@ input:focus-within ~ label
         width: 0
         height: 0
 
-input[type="datetime-local"]
-    -webkit-appearance: none
-    -moz-appearance: none
-    appearance: none
-
-input[type="datetime-local"]::-webkit-inner-spin-button,
-input[type="datetime-local"]::-webkit-calendar-picker-indicator
-    display: none
-    -webkit-appearance: none
-
 .nxt_select
     display: flex
     flex-direction: column
@@ -54,5 +44,19 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator
         &:focus
             outline: none
 
+// fileupload
 input[type="file"]
     display: none
+
+// datetime-local
+input[type="datetime-local"]
+    -webkit-appearance: none
+    -moz-appearance: none
+    appearance: none
+
+input[type="datetime-local"]::-webkit-inner-spin-button,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator
+    display: none
+    -webkit-appearance: none
+    -moz-appearance: none
+    appearance: none
