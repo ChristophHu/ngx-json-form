@@ -50,7 +50,6 @@ export class AppComponent {
   constructor(private _jsonFormService: JsonFormService) {
     this.files$.subscribe({
       next: (files) => {
-        console.log(files)
         this._jsonFormService.setFiles(files)
       }
     })
@@ -303,15 +302,13 @@ export class AppComponent {
 
   valueChanges(formValue: any) {
     // get data back only if form is valid
-    console.log('valueChanges: ', formValue)
+    // console.log('valueChanges: ', formValue)
     this.formValue = formValue
-
-    console.log('formValue: ', this.formValue)
   }
 
   statusChanges(formStatus: any) {
     // get status back only if form is valid
-    console.log('statusChanges: ', formStatus)
+    // console.log('statusChanges: ', formStatus)
     this.formStatus = formStatus
   }
 }
