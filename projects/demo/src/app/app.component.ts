@@ -196,7 +196,7 @@ export class AppComponent {
           {
             type: 'datetime-local',
             defaultValue: '',
-            disabled: true,
+            disabled: false,
             hidden: false,
             key: 'dayOfBirth',
             label: 'Geburtstag',

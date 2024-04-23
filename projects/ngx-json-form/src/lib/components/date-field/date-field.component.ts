@@ -20,48 +20,43 @@ import { Subject } from 'rxjs'
   }]
 })
 export class DateFieldComponent implements ControlValueAccessor {
-  @Input() control: any = {}
-  @Input() disabled: boolean = false
-  readonly formcontrol: FormControl
+  @Input() control: any
+  readonly dateControl: FormControl
 
-  private readonly _componentDestroyed$ = new Subject();
+  private readonly _componentDestroyed$ = new Subject()
 
   constructor() {
     
-    this.formcontrol = new FormControl({ value: '', disabled: false })
+    this.dateControl = new FormControl(new Date)
 
-    this.formcontrol.valueChanges.pipe(
-      // takeUntil(this._componentDestroyed$),
-    ).subscribe((value: any) => {
-      this.onTouch()
-      this.onChange(value)
+    this.dateControl.valueChanges.pipe(
+      takeUntil(this._componentDestroyed$),
+    ).subscribe((invoiceId: Date) => {
+      this._onChange(invoiceId)
+      this._onTouched()
     })
   }
 
-  // ngOnInit() {
-  //   console.log('DateFieldComponent', this.control)
-  // }
-
-  // ngOnDestroy(): void {
-  //   this._componentDestroyed$.next('');
-  //   this._componentDestroyed$.complete();
-  // }
+  ngOnDestroy(): void {
+    this._componentDestroyed$.next('')
+    this._componentDestroyed$.complete()
+  }
 
   value: any = '';
 
-  onChange = (_:any) => { }
-  onTouch = () => { }
+  private _onChange = (_:any) => { }
+  private _onTouched = () => { }
 
   writeValue(value: any): void {
-    this.formcontrol.setValue(value)
+    this.dateControl.setValue(value)
   }
   registerOnChange(fn: any): void {
-    this.onChange = fn
+    this._onChange = fn
   }
   registerOnTouched(fn: any): void {
-    this.onTouch = fn
+    this._onTouched = fn
   }
   setDisabledState(isDisabled: boolean): void {
-    // this.disabled = isDisabled
+    isDisabled ? this.dateControl.disable() : this.dateControl.enable()
   }
 }

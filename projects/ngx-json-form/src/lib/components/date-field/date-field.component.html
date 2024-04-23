@@ -28,10 +28,11 @@
         <input type="text" formControlName="areacode" class="">
     </div>
 </ng-container> -->
+<!-- <input type="date" [formControl]="formcontrol" /> -->
 <input
   [type]="control.type"
-  [formControl]="formcontrol"
+  [formControl]="dateControl"
   [id]="control.key"
   [placeholder]="control.placeholder"
 />
-{{ control | json }}
+<!-- {{ control | json }} -->
