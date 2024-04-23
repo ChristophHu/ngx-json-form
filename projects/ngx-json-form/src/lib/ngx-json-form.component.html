@@ -180,7 +180,7 @@
             <!-- signature -->
             <ng-container *ngIf="control.type === 'signature'">
                 <div class="nxt_button flex flex-col w-full mt-2" *hidden="control.hidden || isHiddenRule(control)">
-                    <label class="nxt_input_label my-2 text-sm leading-none">{{ control.label }}</label>
+                    <label class="nxt_button_label my-2 text-sm leading-none">{{ control.label }}</label>
                     <nxt-signature [formControlName]="control.key"></nxt-signature>
                 </div>
             </ng-container>

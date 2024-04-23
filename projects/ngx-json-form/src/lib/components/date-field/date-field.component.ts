@@ -64,8 +64,7 @@ export class DateFieldComponent implements ControlValueAccessor {
 
   // input options
   delete(key: string) {
-    this.dateControl.setValue(null)
-    // this.writeValue('')
+    this.dateControl.setValue('')
     this.dateControl.markAsDirty()
     this.dateControl.updateValueAndValidity()
   }
