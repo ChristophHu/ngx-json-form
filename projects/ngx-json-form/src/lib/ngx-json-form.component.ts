@@ -21,6 +21,8 @@ import { HiddenDirective } from './directives/hidden/hidden.directive'
 import { SignatureComponent } from './components/signature/signature.component'
 import { FileuploadComponent } from './components/fileupload/fileupload.component'
 // import { AutofocusDirective } from './directives/autofocus/autofocus.directive'
+import { OneTimePadComponent } from './components/one-time-pad/one-time-pad.component'
+import { PinComponent } from './components/pin/pin.component'
 
 @Component({
   selector: 'json-form',
@@ -35,6 +37,8 @@ import { FileuploadComponent } from './components/fileupload/fileupload.componen
     ImageThumbnailComponent,
     MaskDirective,
     MatSelectModule,
+    OneTimePadComponent,
+    PinComponent,
     ReactiveFormsModule,
     SanitizePipe,
     SelectDropdownComponent,

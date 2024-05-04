@@ -239,6 +239,22 @@ export class AppComponent {
               { required: true }
             ],
           },
+          {
+            type: 'pin',
+            disabled: false,
+            hidden: false,
+            key: 'pin',
+            label: 'Pin',
+            placeholder: '1234'
+          },
+          {
+            type: 'otp',
+            disabled: false,
+            hidden: false,
+            key: 'otp',
+            label: 'OTP',
+            placeholder: '123456'
+          }
           // {
           //   type: 'input',
           //   class: '',

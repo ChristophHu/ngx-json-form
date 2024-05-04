@@ -1,0 +1,13 @@
+<form [formGroup]="otpForm">
+    <div class="flex">
+        <!-- <ng-container *ngFor="let control of otp">
+            <input type="text" [formControlName]="control.name" class="w-8 p-2 mr-2 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm text-center font-medium leading-none text-gray-800" maxlength="1" (blur)="onBlur()" (input)="onInputChange()" />
+        </ng-container> -->
+        <input type="text" #digit_1 [formControlName]="'digit_1'" class="nxt_input_field h-12 w-8 px-2 mr-2 border rounded focus:outline-none text-sm text-center font-medium leading-none disabled:pointer-events-none" maxlength="1" (blur)="onBlur()" (input)="onDigitInput($event, null, digit_2)" />
+        <input type="text" #digit_2 [formControlName]="'digit_2'" class="nxt_input_field h-12 w-8 px-2 mr-2 border rounded focus:outline-none text-sm text-center font-medium leading-none disabled:pointer-events-none" maxlength="1" (blur)="onBlur()" (input)="onDigitInput($event, digit_1, digit_3)" />
+        <input type="text" #digit_3 [formControlName]="'digit_3'" class="nxt_input_field h-12 w-8 px-2 mr-4 border rounded focus:outline-none text-sm text-center font-medium leading-none disabled:pointer-events-none" maxlength="1" (blur)="onBlur()" (input)="onDigitInput($event, digit_2, digit_4)" />
+        <input type="text" #digit_4 [formControlName]="'digit_4'" class="nxt_input_field h-12 w-8 px-2 mr-2 border rounded focus:outline-none text-sm text-center font-medium leading-none disabled:pointer-events-none" maxlength="1" (blur)="onBlur()" (input)="onDigitInput($event, digit_3, digit_5)" />
+        <input type="text" #digit_5 [formControlName]="'digit_5'" class="nxt_input_field h-12 w-8 px-2 mr-2 border rounded focus:outline-none text-sm text-center font-medium leading-none disabled:pointer-events-none" maxlength="1" (blur)="onBlur()" (input)="onDigitInput($event, digit_4, digit_6)" />
+        <input type="text" #digit_6 [formControlName]="'digit_6'" class="nxt_input_field h-12 w-8 px-2 mr-2 border rounded focus:outline-none text-sm text-center font-medium leading-none disabled:pointer-events-none" maxlength="1" (blur)="onBlur()" (input)="onDigitInput($event, digit_5, null)" />
+    </div>
+</form>
