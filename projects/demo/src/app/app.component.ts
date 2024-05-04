@@ -239,6 +239,14 @@ export class AppComponent {
               { required: true }
             ],
           },
+          {
+            type: 'otp',
+            disabled: false,
+            hidden: false,
+            key: 'otp',
+            label: 'OTP',
+            placeholder: '123456'
+          }
           // {
           //   type: 'input',
           //   class: '',
