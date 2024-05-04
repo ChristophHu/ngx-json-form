@@ -180,6 +180,12 @@
             </ng-container>
 
             <!-- pin -->
+            <ng-container *ngIf="control.type === 'pin'">
+                <div class="nxt_input flex flex-col w-full mt-2" *hidden="control.hidden || isHiddenRule(control)">
+                    <label class="nxt_input_label my-2 text-sm leading-none">{{ control.label }}</label>
+                    <pin></pin>
+                </div>
+            </ng-container>
 
             <!-- otp -->
             <ng-container *ngIf="control.type === 'otp'">
