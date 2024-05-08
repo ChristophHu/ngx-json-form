@@ -158,7 +158,7 @@
                         </div>
                     </div>
                     <input type="text" [formControlName]="control.key" class="hidden">
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} is required</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} wird benötigt.</div>
                     <!-- <div *ngIf="dynamicForm.get(control.key)?.hasError('compare')" class="px-3 text-red-400 pt-1 pb-2 text-sm">Vergleichserror</div>     -->
                 </div>
                 <!-- <nxt-date-field [formControlName]="control.key" [control]="control"></nxt-date-field> -->
