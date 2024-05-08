@@ -147,7 +147,7 @@
                 <div class="nxt_input flex flex-col w-full mt-2" [ngClass]="{ 'hidden': control.hidden }">
                     <label class="nxt_input_label my-2 text-sm leading-none">{{ control.label }}</label>
                     <div class="relative mt-1 flex items-center">
-                        <input type="datetime" [formControlName]="control.key" [id]="control.key" value="{{ dynamicForm.value[control.key] | date:'yyyy-MM-dd HH:mm:ss' }}" class="nxt_input_date w-full p-3 border rounded focus:outline-none text-sm font-medium leading-none disabled:pointer-events-none" onfocus="this.showPicker()" />
+                        <input type="datetime-local" [formControlName]="control.key" [id]="control.key" value="{{ dynamicForm.value[control.key] | date:'yyyy-MM-dd HH:mm:ss' }}" class="nxt_input_date w-full p-3 border rounded focus:outline-none text-sm font-medium leading-none disabled:pointer-events-none" onfocus="this.showPicker()" />
                         <div *ngIf="!control.disabled" class="nxt_input_action_icon absolute h-full flex flex-row right-0 items-center justify-center">
                             <div class="grid h-8 w-8 stroke-2 place-items-center cursor-pointer" (click)="setDateTime(control.key)">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 7v5l3 3" /></svg>
@@ -159,10 +159,28 @@
                     </div>
                     <input type="text" [formControlName]="control.key" class="hidden">
                     <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} wird benötigt.</div>
-                    <!-- <div *ngIf="dynamicForm.get(control.key)?.hasError('compare')" class="px-3 text-red-400 pt-1 pb-2 text-sm">Vergleichserror</div>     -->
                 </div>
                 <!-- <nxt-date-field [formControlName]="control.key" [control]="control"></nxt-date-field> -->
             </ng-container>
+            <!-- <ng-container *ngIf="control.type === 'datetime-local'">
+                <div class="nxt_input flex flex-col w-full mt-2" [ngClass]="{ 'hidden': control.hidden }">
+                    <label class="nxt_input_label my-2 text-sm leading-none">{{ control.label }}</label>
+                    <div class="relative mt-1 flex items-center">
+                        <input type="datetime-local" [formControlName]="control.key" [id]="control.key" value="{{ dynamicForm.value[control.key] | date:'yyyy-MM-dd HH:mm:ss' }}" class="nxt_input_date w-full p-3 border rounded focus:outline-none text-sm font-medium leading-none disabled:pointer-events-none" onfocus="this.showPicker()" />
+                        <div *ngIf="!control.disabled" class="nxt_input_action_icon absolute h-full flex flex-row right-0 items-center justify-center">
+                            <div class="grid h-8 w-8 stroke-2 place-items-center cursor-pointer" (click)="setDateTime(control.key)">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 7v5l3 3" /></svg>
+                            </div>
+                            <div class="grid h-8 w-8 stroke-2 place-items-center cursor-pointer" (click)="delete(control.key)">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                            </div>
+                        </div>
+                        <div *ngIf="!control.disabled" class="nxt_input_action_icon absolute h-full flex flex-row inset-y-0 right-8 items-center">
+                            
+                        </div>
+                    </div>
+                </div>
+            </ng-container> -->
 
             <!-- fileupload -->
             <ng-container *ngIf="control.type === 'fileupload'">
