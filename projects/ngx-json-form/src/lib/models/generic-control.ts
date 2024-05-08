@@ -17,6 +17,7 @@ type InputControl = {
   placeholder:    string,
   dependOnKey?:   string,
   options?:       any[] | Observable<any[]>,
+  rules?          : IRule[],
   validators?:    IValidator[]
 }
 type OTPControl = {
@@ -120,6 +121,7 @@ type DateTimeControl = {
   key             : string,
   label           : string,
   placeholder     : string,
+  rules?          : IRule[],
   validators?     : IValidator[]
 }
 type FileUploadControl = {
@@ -172,9 +174,10 @@ interface IComponent {
 interface IRule {
   property: string,
   dependOn?: {
-    key: string,
+    key?: string,
+    value?: any,
     operation: 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin' | 'regex' | 'exists' | 'notexists' | 'contains' | 'notcontains' | 'includes' | 'startswith' | 'endswith',
-    except: any
+    except?: any
   },
   value: any // | any[] | Observable<any> | Observable<any[]>
 }

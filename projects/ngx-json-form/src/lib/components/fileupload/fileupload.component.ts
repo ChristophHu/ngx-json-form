@@ -44,7 +44,6 @@ export class FileuploadComponent implements ControlValueAccessor {
   onTouch = () => { }
 
   writeValue(value: any): void {
-    console.log('writeValue: ', value)
     this.value = value
   }
   registerOnChange(fn: any): void {

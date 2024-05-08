@@ -18,13 +18,14 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('email')" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} must be a valid email-address.</div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('max')" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} can be max {{ control.validators | indexOfObjectValue:'max' }}.</div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('min')" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} can be min {{ control.validators | indexOfObjectValue:'min' }}.</div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('maxlength')" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} can be max {{ control.validators | indexOfObjectValue:'maxlength' }} char long.</div> 
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('minlength') && dynamicForm.get(control.key)?.touched && dynamicForm.get(control.key)?.dirty" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} must be {{ control.validators | indexOfObjectValue:'minlength' }} char long.</div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && dynamicForm.get(control.key)?.touched && dynamicForm.get(control.key)?.dirty" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} is required</div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('invalidZip')  && dynamicForm.get(control.key)?.touched && dynamicForm.get(control.key)?.dirty" class="px-3 text-red-400 pt-1 pb-2 text-sm">Invalid zip-code.</div> 
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('email') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">Es muss sich um eine korrekte Mail-Adresse handeln.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('max') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} kann maximal {{ control.validators | indexOfObjectValue:'max' }} betragen.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('min') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} muss mindestens {{ control.validators | indexOfObjectValue:'min' }} betragen.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('maxlength') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} kann maximal {{ control.validators | indexOfObjectValue:'maxlength' }} Zeichen lang sein.</div> 
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('minlength') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} muss mindestens {{ control.validators | indexOfObjectValue:'minlength' }} Zeichen lang sein.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} wird benötigt.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('invalidZip') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">Falsche Eingabe.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('compare') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">Vergleichserror</div> 
                 </div>
             </ng-container>
 
@@ -41,13 +42,17 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828"></path><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87"></path><path d="M3 3l18 18"></path></svg>
                         </span>
                     </div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('maxlength')" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} can be max {{ control.validators | indexOfObjectValue:'maxlength' }} char long.</div> 
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('minlength') && dynamicForm.get(control.key)?.touched && dynamicForm.get(control.key)?.dirty" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} must be {{ control.validators | indexOfObjectValue:'minlength' }} char long.</div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && dynamicForm.get(control.key)?.touched && dynamicForm.get(control.key)?.dirty" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} is required</div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('hasNumber') && dynamicForm.get(control.key)?.touched && dynamicForm.get(control.key)?.dirty" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} has no number.</div> 
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('hasSpecial') && dynamicForm.get(control.key)?.touched && dynamicForm.get(control.key)?.dirty" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} has no special char.</div> 
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('hasLower') && dynamicForm.get(control.key)?.touched && dynamicForm.get(control.key)?.dirty" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} has no lower char.</div> 
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('hasUpper') && dynamicForm.get(control.key)?.touched && dynamicForm.get(control.key)?.dirty" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} has no upper char.</div> 
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('max') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} kann maximal {{ control.validators | indexOfObjectValue:'max' }} betragen.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('min') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} muss mindestens {{ control.validators | indexOfObjectValue:'min' }} betragen.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('maxlength') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} kann maximal {{ control.validators | indexOfObjectValue:'maxlength' }} Zeichen lang sein.</div> 
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('minlength') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} muss mindestens {{ control.validators | indexOfObjectValue:'minlength' }} Zeichen lang sein.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} wird benötigt.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('invalidZip') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">Falsche Eingabe.</div>
+                    <!-- validStrongPassword -->
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('hasNumber') && dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} benötigt Zahlen.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('hasUpper') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} benötigt Großbuchstaben.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('hasLower') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} benötigt Kleinbuchstaben.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('hasSpecial') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} benötigt Sonderzeichen.</div>
                 </div>
             </ng-container>
 
@@ -57,15 +62,14 @@
                     <label class="nxt_input_label my-2 text-sm leading-none">{{ control.label }}</label>
                     <div class="nxt_input_area w-full mt-1 border border-borderline rounded">
                         <div class="relative h-32 w-full" resizeable>
-                            <textarea [formControlName]="control.key" [id]="control.key" class="absolute inset-0 pt-3 px-3 bg-transparent text-sm font-medium leading-none rounded scrollbar-hide" id="" cols="30" rows="5" placeholder="{{control.placeholder}}"></textarea>
+                            <textarea [formControlName]="control.key" [id]="control.key" class="absolute inset-0 pt-3 px-3 bg-transparent text-sm font-medium leading-none rounded scrollbar-hide" cols="30" rows="5" placeholder="{{control.placeholder}}"></textarea>
                         </div>
                     </div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('email')" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} must be a valid email-address.</div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('max')" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} can be max {{ control.validators | indexOfObjectValue:'max' }}.</div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('min')" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} can be min {{ control.validators | indexOfObjectValue:'min' }}.</div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('maxlength')" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} can be max {{ control.validators | indexOfObjectValue:'maxlength' }} char long.</div> 
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('minlength') && dynamicForm.get(control.key)?.touched" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} must be {{ control.validators | indexOfObjectValue:'minlength' }} char long.</div>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && dynamicForm.get(control.key)?.touched" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} is required</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('max') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} kann maximal {{ control.validators | indexOfObjectValue:'max' }} betragen.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('min') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} muss mindestens {{ control.validators | indexOfObjectValue:'min' }} betragen.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('maxlength') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} kann maximal {{ control.validators | indexOfObjectValue:'maxlength' }} Zeichen lang sein.</div> 
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('minlength') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} muss mindestens {{ control.validators | indexOfObjectValue:'minlength' }} Zeichen lang sein.</div>
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} wird benötigt.</div>
                 </div>
             </ng-container>
 
@@ -77,6 +81,7 @@
                         <mat-option *ngFor="let option of control.options" [value]="option.value">{{ option.label }}</mat-option>
                     </mat-select>
                 </div>
+                <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} wird benötigt.</div>
             </ng-container>
 
             <!-- custom select -->
@@ -94,8 +99,8 @@
                     <mat-select [formControlName]="control.key" [id]="control.key" [(value)]="control.key" class="nxt_select_input">
                         <mat-option *ngFor="let option of (control.dependedOptions$ | async)" [value]="option.value">{{ option.label }}</mat-option>
                     </mat-select>
-                    <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && dynamicForm.get(control.key)?.touched" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} is required</div>
                 </div>
+                <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">{{ control.label }} wird benötigt.</div>
             </ng-container>
 
             <!-- checkbox -->
@@ -142,7 +147,7 @@
                 <div class="nxt_input flex flex-col w-full mt-2" [ngClass]="{ 'hidden': control.hidden }">
                     <label class="nxt_input_label my-2 text-sm leading-none">{{ control.label }}</label>
                     <div class="relative mt-1 flex items-center">
-                        <input type="datetime-local" [formControlName]="control.key" [id]="control.key" value="{{ dynamicForm.value[control.key] | date:'yyyy-MM-dd HH:mm:ss' }}" class="nxt_input_date w-full p-3 border rounded focus:outline-none text-sm font-medium leading-none disabled:pointer-events-none" onfocus="this.showPicker()" />
+                        <input type="datetime" [formControlName]="control.key" [id]="control.key" value="{{ dynamicForm.value[control.key] | date:'yyyy-MM-dd HH:mm:ss' }}" class="nxt_input_date w-full p-3 border rounded focus:outline-none text-sm font-medium leading-none disabled:pointer-events-none" onfocus="this.showPicker()" />
                         <div *ngIf="!control.disabled" class="nxt_input_action_icon absolute h-full flex flex-row right-0 items-center justify-center">
                             <div class="grid h-8 w-8 stroke-2 place-items-center cursor-pointer" (click)="setDateTime(control.key)">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 7v5l3 3" /></svg>
@@ -151,11 +156,12 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
                             </div>
                         </div>
-                        <!-- <div *ngIf="!control.disabled" class="nxt_input_action_icon absolute h-full flex flex-row inset-y-0 right-8 items-center">
-                            
-                        </div> -->
                     </div>
+                    <input type="text" [formControlName]="control.key" class="hidden">
+                    <div *ngIf="dynamicForm.get(control.key)?.hasError('required') && !dynamicForm.get(control.key)?.untouched" class="px-3 text-red-400 pt-1 pb-2 text-sm">A {{ control.label }} is required</div>
+                    <!-- <div *ngIf="dynamicForm.get(control.key)?.hasError('compare')" class="px-3 text-red-400 pt-1 pb-2 text-sm">Vergleichserror</div>     -->
                 </div>
+                <!-- <nxt-date-field [formControlName]="control.key" [control]="control"></nxt-date-field> -->
             </ng-container>
 
             <!-- fileupload -->
@@ -174,7 +180,7 @@
             <!-- signature -->
             <ng-container *ngIf="control.type === 'signature'">
                 <div class="nxt_button flex flex-col w-full mt-2" *hidden="control.hidden || isHiddenRule(control)">
-                    <label class="nxt_input_label my-2 text-sm leading-none">{{ control.label }}</label>
+                    <label class="nxt_button_label my-2 text-sm leading-none">{{ control.label }}</label>
                     <nxt-signature [formControlName]="control.key"></nxt-signature>
                 </div>
             </ng-container>
