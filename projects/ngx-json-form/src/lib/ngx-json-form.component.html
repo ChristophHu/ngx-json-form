@@ -121,6 +121,13 @@
                 </div>
             </ng-container>
             
+            <!-- tag-input -->
+            <ng-container *ngIf="control.type === 'tag-input'">
+                <div class="nxt_toggle flex items-center w-full mt-2" [ngClass]="control.hidden ? 'hidden' : ''">
+                    <nxt-tag-input [formControlName]="control.key" [id]="control.key" [tags]="['test']" />
+                    <label class="nxt_toggle_label ml-2 text-sm leading-none">{{ control.label }}</label>
+                </div>
+            </ng-container>
 
             <!-- radio -->
             <ng-container *ngIf="control.type === 'radio'">

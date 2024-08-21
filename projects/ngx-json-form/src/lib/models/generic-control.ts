@@ -104,6 +104,17 @@ type ToggleControl = {
   value:          boolean,
   validators?:    IValidator[]
 }
+type TagControl = {
+  type:           'tag-input',
+  defaultValue?:  boolean,
+  disabled?:      boolean,
+  hidden?:        boolean,
+  key:            string,
+  label:          string,
+  tags:           string | string[] | null,
+  validators?:    IValidator[]
+}
+
 type RadioControl = {
   type            : 'radio',
   defaultValue?   : string,
@@ -198,4 +209,4 @@ interface IValidator {
   zipCodeValidator?: boolean
 }
 
-export type GenericControl = InputControl | DependedSelectControl | OTPControl | PasswordControl | PinControl | SelectControl | SearchSelectControl | TextareaControl | CheckboxControl | ToggleControl | RadioControl | DateTimeControl | FileUploadControl | ImageSliderControl | SignatureControl
+export type GenericControl = InputControl | DependedSelectControl | OTPControl | PasswordControl | PinControl | SelectControl | SearchSelectControl | TextareaControl | CheckboxControl | TagControl | ToggleControl | RadioControl | DateTimeControl | FileUploadControl | ImageSliderControl | SignatureControl

@@ -96,6 +96,14 @@ export class AppComponent {
             value: false
           },
           {
+            type: 'tag-input',
+            disabled: false,
+            hidden: false,
+            key: 'tags',
+            label: 'TagInput',
+            tags: []
+          },
+          {
             type: 'input',
             class: '',
             defaultValue: 0,

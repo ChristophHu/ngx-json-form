@@ -24,6 +24,7 @@ import { DateFieldComponent } from './components/date-field/date-field.component
 // import { AutofocusDirective } from './directives/autofocus/autofocus.directive'
 import { OneTimePadComponent } from './components/one-time-pad/one-time-pad.component'
 import { PinComponent } from './components/pin/pin.component'
+import { TagInputComponent } from './components/tag-input/tag-input.component'
 
 @Component({
   selector: 'json-form',
@@ -45,6 +46,7 @@ import { PinComponent } from './components/pin/pin.component'
     SanitizePipe,
     SelectDropdownComponent,
     SignatureComponent,
+    TagInputComponent,
     ToggleComponent
   ],
   templateUrl: './ngx-json-form.component.html',
